@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import CompletionHistory from "../interfaces/completionHistory";
 
@@ -18,20 +18,33 @@ interface HistoryProps {
  * @returns the history section of the main page
  */
 export const History = ({ history }: HistoryProps) => {
+    const [historyItems, setHistoryItems] = useState<CompletionHistory[]>([]);
 
-    // use the list of history items and format
-    const historyItems = history.map((item, index) => {
-        return (
-            <li key={index} className='history-list-elem'>
-                <div className='left-aligned-div'>
-                    <p className="aside-text">You said my bakery...</p>
-                    <h3>{item.prompt}</h3>
-                    <p className="aside-text">so I changed my description to...</p>
-                </div>
-                <p className='result-description'>{item.result}</p>
-            </li>
-        );
-    }).reverse();
+    useEffect(() => {
+        setHistoryItems(history);
+    }, [history]);
+
+
+    /**
+     * Formats the list of history items into TSX.
+     * 
+     * @returns the actual history, formatted.
+     */
+    const formatHistoryItems = () => {
+        return history.map((item, index) => {
+            return (
+                <li key={index} className='history-list-elem'>
+                    <div className='left-aligned-div'>
+                        <p className="aside-text">You said my bakery...</p>
+                        <h3>{item.prompt}</h3>
+                        <p className="aside-text">so I changed my description to...</p>
+                    </div>
+                    <p className='result-description'>{item.result}</p>
+                </li>
+            );
+        });
+    }
+
 
     return (
         <section className='history-div'>
@@ -40,7 +53,7 @@ export const History = ({ history }: HistoryProps) => {
             <hr className="fancy-hr"/>
 
             <ul className="history-list">
-                {historyItems}
+                {formatHistoryItems()}
             </ul>
         </section>
     );

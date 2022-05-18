@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import openAI from 'openai';
 
 import './heading.css';
 import CompletionsHistory from '../interfaces/completionHistory';
+
 
 /**
  * Given a list of keywords, calls OpenAI's API to get an entirely new site description.
@@ -12,13 +12,12 @@ import CompletionsHistory from '../interfaces/completionHistory';
  */
 const generateNewSubtitle = async (keywords: string) => {
   const openAIInfo = {
-    prompt: `Give me a description of my bakery that ${keywords}.`,
+    prompt: `Write a promotion for Coco's bakery that ${keywords}.`,
     temperature: 0.7,
     max_tokens: 100,
   };
 
-  console.log(`Give me a description of my bakery that ${keywords}.`);
-
+  // use curie to save me money while still being good
   const response = await fetch(
     `https://api.openai.com/v1/engines/text-curie-001/completions`,
     {
@@ -32,39 +31,55 @@ const generateNewSubtitle = async (keywords: string) => {
   );
 
   const data = await response.json();
-  console.log(data.choices[0].text);
   return data.choices[0].text;
 };
+
 
 /**
  * The props for the heading component.
  */
 interface HeadingProps {
-  updateHistory: (newHistory: CompletionsHistory) => void;
+  updateHistory: (newHistory: CompletionsHistory[]) => void;
+  description?: string;
 }
+
 
 /**
  * React function that generates the heading of the home page.
  * @returns the heading of the home page.
  */
-export const Heading = ({ updateHistory }: HeadingProps) => {
+export const Heading = ({ updateHistory, description }: HeadingProps) => {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [subtitleChanged, setSubtitleChanged] = useState<boolean>(false);
-  const [text, setText] = useState<string>(
-    ''
-  );
-  const [subtitle, setSubtitle] = useState<string>(
-    "Hi, I'm Coco the Chicken! I'm right now in my assets kitchen, cooking up some cookies—feel free to drop by when you're examining the code. Welcome to the new site of my bakery! Help me generate a better description..."
-  );
+  const [text, setText] = useState<string>('');
+
+  const defaultText = `Hi, I'm Coco the Chicken! 
+  I'm right now in my assets kitchen, cooking up some cookies—
+  feel free to drop by when you're examining the code. 
+  Welcome to the new site of my bakery! 
+  Help me generate a better description :)`;
+  const [subtitle, setSubtitle] = useState<string>(defaultText);
+
 
   // Sets the scrolled state to true when the user scrolls down.
   useEffect(() => {
     window.addEventListener('scroll', listenScrollEvent);
 
+    // Clean up the event listener we added
     return () => {
       window.removeEventListener('scroll', listenScrollEvent);
     };
   }, []);
+
+
+  // Fills in the old description if provided.
+  useEffect(() => {
+    if (description) {
+      setSubtitle(description);
+      setSubtitleChanged(true);
+    }
+  }, [description]);
+
 
   /**
    * Determines if the user scrolled away from the top of the page and modifies state if so.
@@ -79,6 +94,7 @@ export const Heading = ({ updateHistory }: HeadingProps) => {
     }
   };
 
+
   /**
    * Locally updates the stored text upon change of the input field.
    *
@@ -91,6 +107,7 @@ export const Heading = ({ updateHistory }: HeadingProps) => {
     event.preventDefault();
   };
 
+
   /**
    * Sends the modified text to the OpenAI API using Axios.
    *
@@ -101,16 +118,19 @@ export const Heading = ({ updateHistory }: HeadingProps) => {
       setSubtitleChanged(true);
       setSubtitle(newSubtitle);
 
-      updateHistory({
-        prompt: text,
-        result: newSubtitle,
-      });
+      updateHistory([
+        {
+          prompt: text,
+          result: newSubtitle,
+        },
+      ]);
 
-      setText("");
+      setText('');
     });
 
     event.preventDefault();
   };
+
 
   /**
    * Formats the subtitles for display by splitting at periods.
@@ -120,7 +140,7 @@ export const Heading = ({ updateHistory }: HeadingProps) => {
   const formatSubtitle = () => {
     const subtitleList = subtitle
       .trim()
-      .split('.')
+      .split(/(?<=[!.?])/g)
       .filter((s) => s.length > 0);
 
     return subtitleList.map((sItem: string, index: number) => {
@@ -130,11 +150,12 @@ export const Heading = ({ updateHistory }: HeadingProps) => {
           className="centered-context-text"
           style={{ color: subtitleChanged ? 'black' : '#791dd0' }}
         >
-          {sItem + '.'}
+          {sItem}
         </p>
       );
     });
   };
+
 
   return (
     <header className="header-div">
