@@ -114,7 +114,10 @@ export const Heading = ({ updateHistory, description }: HeadingProps) => {
    * @param event the submit event.
    * */
   const handleTextSubmit = (event: React.FormEvent<HTMLInputElement>) => {
-    generateNewSubtitle(text).then((newSubtitle: string) => {
+    const textForGeneration = text.trim();
+    setText('');
+
+    generateNewSubtitle(textForGeneration).then((newSubtitle: string) => {
       setSubtitleChanged(true);
       setSubtitle(newSubtitle);
 
@@ -124,8 +127,6 @@ export const Heading = ({ updateHistory, description }: HeadingProps) => {
           result: newSubtitle,
         },
       ]);
-
-      setText('');
     });
 
     event.preventDefault();
