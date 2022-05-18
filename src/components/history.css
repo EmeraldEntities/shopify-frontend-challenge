@@ -37,7 +37,6 @@
     height: 100%;
     background-color: #ffa7b352;
     box-shadow: 0px 0px 10px rgba(65, 64, 64, 0.257);
-    z-index: 99999;
 }
 
 
@@ -51,6 +50,12 @@
     font-size: 1.2rem;
 }
 
+.coco-speak {
+    margin-top: 0.5em;
+    color: #791dd0;
+    font-size: 0.8rem;
+}
+
 .aside-text {
     /* make sure that the text has ample spacing */
     position: relative;
@@ -62,7 +67,7 @@
 
      
     margin-top: 0.5em;
-    color: rgb(76, 0, 147);
+    color: #791dd0;
     font-size: 0.8rem;
 }
 

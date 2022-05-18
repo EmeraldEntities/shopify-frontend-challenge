@@ -36,9 +36,10 @@ export const History = ({ history }: HistoryProps) => {
     return (
         <section className='history-div'>
             <h2> Suggestions </h2>
+            <p className="coco-speak"> Don't worry! I'll keep track of all your helpful renditions right here, in case you like one. </p>
             <hr className="fancy-hr"/>
 
-            <ul className="history-list debug">
+            <ul className="history-list">
                 {historyItems}
             </ul>
         </section>

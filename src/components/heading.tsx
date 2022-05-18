@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import openAI from 'openai';
 
 import './heading.css';
@@ -48,12 +48,36 @@ interface HeadingProps {
  * @returns the heading of the home page.
  */
 export const Heading = ({ updateHistory }: HeadingProps) => {
+  const [scrolled, setScrolled] = useState<boolean>(false);
+  const [subtitleChanged, setSubtitleChanged] = useState<boolean>(false);
   const [text, setText] = useState<string>(
-    'is fun, sells cookies, and is a great place to be!'
+    ''
   );
   const [subtitle, setSubtitle] = useState<string>(
-    'Welcome to the new site of my bakery! Help me generate a better description...'
+    "Hi, I'm Coco the Chicken! I'm right now in my assets kitchen, cooking up some cookies—feel free to drop by when you're examining the code. Welcome to the new site of my bakery! Help me generate a better description..."
   );
+
+  // Sets the scrolled state to true when the user scrolls down.
+  useEffect(() => {
+    window.addEventListener('scroll', listenScrollEvent);
+
+    return () => {
+      window.removeEventListener('scroll', listenScrollEvent);
+    };
+  }, []);
+
+  /**
+   * Determines if the user scrolled away from the top of the page and modifies state if so.
+   *
+   * @param e the scroll event.
+   */
+  const listenScrollEvent = (e: Event) => {
+    if (window.scrollY > 250) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
 
   /**
    * Locally updates the stored text upon change of the input field.
@@ -74,12 +98,15 @@ export const Heading = ({ updateHistory }: HeadingProps) => {
    * */
   const handleTextSubmit = (event: React.FormEvent<HTMLInputElement>) => {
     generateNewSubtitle(text).then((newSubtitle: string) => {
+      setSubtitleChanged(true);
       setSubtitle(newSubtitle);
 
       updateHistory({
         prompt: text,
         result: newSubtitle,
       });
+
+      setText("");
     });
 
     event.preventDefault();
@@ -98,7 +125,11 @@ export const Heading = ({ updateHistory }: HeadingProps) => {
 
     return subtitleList.map((sItem: string, index: number) => {
       return (
-        <p key={index} className="centered-context-text">
+        <p
+          key={index}
+          className="centered-context-text"
+          style={{ color: subtitleChanged ? 'black' : '#791dd0' }}
+        >
           {sItem + '.'}
         </p>
       );
@@ -106,7 +137,7 @@ export const Heading = ({ updateHistory }: HeadingProps) => {
   };
 
   return (
-    <header className="header-div ">
+    <header className="header-div">
       <div className="title-div ">
         <h1 className="centered-heading"> Coco's Bakery </h1>
         <hr className="fancy-hr" />
@@ -114,12 +145,19 @@ export const Heading = ({ updateHistory }: HeadingProps) => {
 
       <div className="subtitle-div ">{formatSubtitle()}</div>
 
-      <div className="input-div ">
+      <div
+        className="input-div "
+        style={{
+          backgroundColor: scrolled ? '#fa7aefbb' : '#fa7aef52',
+          color: scrolled ? '#f1f1f1' : '#414040',
+        }}
+      >
         <form>
-          <p> Give me a description of my bakery that ... </p>
+          <p> Give me a description! My bakery... </p>
           <input
             type="text"
             className="input-field"
+            value={text.length > 0 ? text : ''}
             placeholder="is fun, sells cookies, and is a great place to be!"
             onChange={handleTextChange}
           />

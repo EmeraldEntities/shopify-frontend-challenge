@@ -21,6 +21,7 @@ export const Home = () => {
 
     return (
         <main className='main-section'>
+            
             <Heading updateHistory={updateHistory} />
 
             <History history={history} />

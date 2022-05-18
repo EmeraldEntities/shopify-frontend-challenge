@@ -16,6 +16,11 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "cookielogo_600x600.png",
+      "type": "image/png",
+      "sizes": "600x600"
     }
   ],
   "start_url": ".",

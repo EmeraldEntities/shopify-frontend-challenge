@@ -17,6 +17,7 @@
     height: 100vh;
     /* max-height: 100vh; */
 
+    position: relative;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -36,9 +37,10 @@
     left: 0px;
 }
 
-
 .title-div {
     position: relative;
+
+
     min-height: 10%;
     width: 100%;
     top: 20%;
@@ -50,43 +52,21 @@
     position: fixed;
     top: auto;
     padding-bottom: 3%;
-    background-color: #ffa7b352 ;
 
     bottom: 0;
     width: 100%;
     max-height: 15%;
     min-height: 10%;
+    /* background-color: #ff6ed6d8; */
 
-    color: rgb(65, 64, 64);
+    color: #f1f1f1;
     box-shadow: 0px 0px 10px rgba(65, 64, 64, 0.257);
     z-index: 99999;
-}
 
-
-input[type=text] {
-    box-sizing: border-box;
-    width: 80%;
-    padding: 1%;
-    border: 0;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
-
-    box-shadow: 0px 0px 10px rgba(65, 64, 64, 0.257);
-    
-    background-color: #eb6e7dab;
-    color: white;
-}
-
-input[type=text]::placeholder {
-    color: rgba(255, 255, 255, 0.459);
-}
-
-input[type=submit] {
-    padding: 1%;
-    width: 5%;
-    border: 0;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
 }
 
 .subtitle-div {
@@ -113,6 +93,43 @@ input[type=submit] {
     font-size: 1.2rem;
 }
 
+
+input[type=text] {
+    box-sizing: border-box;
+    width: 80%;
+    padding: 1%;
+    border: 0;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    box-shadow: 0px 0px 10px rgba(65, 64, 64, 0.257);
+    
+    background-color: #a140a6aa;
+    color: white;
+}
+
+input[type=text]::placeholder {
+    color: rgba(255, 255, 255, 0.548);
+}
+
+input[type=submit] {
+    padding: 1%;
+    width: 5%;
+    border: 0;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    background-color: #b486b6aa;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+input[type=submit]:hover {
+    background-color: #fef3ffaa;
+    cursor: pointer;
+}
 
 h1 {
     font-family: 'Roboto Flex', sans-serif;
