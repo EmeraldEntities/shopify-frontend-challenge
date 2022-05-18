@@ -15,13 +15,14 @@ export const Home = () => {
 
     const updateHistory = (newHistory: CompletionHistory) => {
         setHistory([...history, newHistory]);
+        console.log(history);
     }
 
     return (
         <main className='main-section'>
             <Heading updateHistory={updateHistory} />
 
-            <section className="section-div debug">
+            <section className="section-div">
 
             </section>
         </main>
