@@ -3,6 +3,13 @@ The frontend challenge for my Shopify Fall Coop 2022 application.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Details
+In order to add my unique spin on the frontend challenge, I decided to use React's dynamic capabilities and create a webapp where you are helping Coco the Chicken generate a description using OpenAI for her bakery website (which, of course, serves cookies).
+
+The most recent description will save and will persist on return, which was one of my bonuses I chose to use.
+
+Try finding Coco in the code (she's busy cooking up all those custom history cookies) and saying hi!
+
 ## Available Scripts
 
 In the project directory, you can run:
