@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import { Heading } from '../components/heading';
+import { History } from '../components/history';
 import CompletionHistory from '../interfaces/completionHistory';
 
 import "./home.css";
@@ -22,9 +23,7 @@ export const Home = () => {
         <main className='main-section'>
             <Heading updateHistory={updateHistory} />
 
-            <section className="section-div">
-
-            </section>
+            <History history={history} />
         </main>
     );
 }
