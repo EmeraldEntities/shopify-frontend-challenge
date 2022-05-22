@@ -87,7 +87,7 @@ export const Heading = ({ updateHistory, description }: HeadingProps) => {
    * @param e the scroll event.
    */
   const listenScrollEvent = (e: Event) => {
-    if (window.scrollY > 250) {
+    if (window.scrollY > 150) {
       setScrolled(true);
     } else {
       setScrolled(false);
@@ -167,7 +167,7 @@ export const Heading = ({ updateHistory, description }: HeadingProps) => {
 
       <div className="subtitle-div ">{formatSubtitle()}</div>
 
-      <div
+      {/* <div
         className="input-div "
         style={{
           backgroundColor: scrolled ? '#fa7aefbb' : '#fa7aef52',
@@ -185,7 +185,7 @@ export const Heading = ({ updateHistory, description }: HeadingProps) => {
           />
           <input type="submit" value="→" onClick={handleTextSubmit} />
         </form>
-      </div>
+      </div> */}
     </header>
   );
 };

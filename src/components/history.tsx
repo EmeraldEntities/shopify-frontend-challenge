@@ -31,15 +31,17 @@ export const History = ({ history }: HistoryProps) => {
      * @returns the actual history, formatted.
      */
     const formatHistoryItems = () => {
-        return history.map((item, index) => {
+        return historyItems.map((item, index) => {
             return (
                 <li key={index} className='history-list-elem'>
-                    <div className='left-aligned-div'>
+                    <section>
                         <p className="aside-text">You said my bakery...</p>
                         <h3>{item.prompt}</h3>
-                        <p className="aside-text">so I changed my description to...</p>
-                    </div>
+                    </section>
+                    <section>
+                    <p className="aside-text">so I changed my description to...</p>
                     <p className='result-description'>{item.result}</p>
+                    </section>
                 </li>
             );
         });
