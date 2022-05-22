@@ -1,7 +1,11 @@
+/* || HISTORY LIST STYLES */
+
 .history-div {
     width: 100vw;
-    max-width: 100%;
     height: 100vh;
+
+    /* account for vertical view bar in width */
+    max-width: 100%;
 
     display: flex;
     flex-direction: column;
@@ -40,6 +44,8 @@
 }
 
 
+/* || ITEM DESCRIPTION STYLES */
+
 .result-description {
     /* make sure that the text has ample spacing */
     margin-left: 4%;
@@ -71,6 +77,9 @@
     font-size: 0.8rem;
 }
 
+
+/* || GENERAL STYLES */
+
 h2 {
     font-family: 'Roboto Flex', sans-serif;
     color: rgb(0, 0, 0);
@@ -83,4 +92,20 @@ h3 {
     color: rgb(0, 0, 0);
 
     margin-left: 4%;
+}
+
+
+/* MOBILE STYLES */
+@media screen and (max-width: 600px) {
+    .coco-speak {
+        font-size: 0.6rem;
+    }
+
+    .result-description {
+        font-size: 0.8rem;
+    }
+
+    h3 {
+        font-size: 0.8rem;
+    }
 }

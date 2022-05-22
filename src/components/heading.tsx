@@ -159,7 +159,7 @@ export const Heading = ({ updateHistory, description }: HeadingProps) => {
 
 
   return (
-    <header className="header-div">
+    <header className="header-section">
       <div className="title-div ">
         <h1 className="centered-heading"> Coco's Bakery </h1>
         <hr className="fancy-hr" />
@@ -167,8 +167,8 @@ export const Heading = ({ updateHistory, description }: HeadingProps) => {
 
       <div className="subtitle-div ">{formatSubtitle()}</div>
 
-      {/* <div
-        className="input-div "
+      <section
+        className="input-section "
         style={{
           backgroundColor: scrolled ? '#fa7aefbb' : '#fa7aef52',
           color: scrolled ? '#f1f1f1' : '#414040',
@@ -185,7 +185,7 @@ export const Heading = ({ updateHistory, description }: HeadingProps) => {
           />
           <input type="submit" value="→" onClick={handleTextSubmit} />
         </form>
-      </div> */}
+      </section>
     </header>
   );
 };

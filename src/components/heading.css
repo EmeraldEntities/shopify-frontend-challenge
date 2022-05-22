@@ -1,25 +1,21 @@
-.debug {
-    border: 5px solid rgb(254, 0, 0);
-    top: 0;
-    left: 0;
-    
-    z-index: 99999;
-}
+/* || GENERAL HEADER STYLES */
 
-.header-div {
-    /* size of div -- make one screen big */
+.header-section {
+    /* size of section -- make one screen big */
     width: 100vw;
+    min-height: 100vh;
+    
+    /* account for vertical view bar in width */    
     max-width: 100%;
-    height: 100vh;
-    /* max-height: 100vh; */
 
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     text-align: center;
 }
 
-.header-div::before {
+.header-section::before {
     /* should make the background semi transparent */
     content: "";
     background-image: linear-gradient(to bottom right, rgba(106, 170, 199, 0.52), rgba(209, 28, 28, 0.73)), url("https://images.unsplash.com/photo-1597733153203-a54d0fbc47de?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1090");
@@ -36,14 +32,16 @@
 .title-div {
     position: relative;
 
-
+    margin-top: -5%;
     min-height: 10%;
     width: 100%;
-    top: 20%;
     color: rgb(65, 64, 64);
 }
 
-.input-div {
+
+/* || INPUT SECTION STYLES */
+
+.input-section {
     /* we want this div stuck at the bottom */
     position: fixed;
     top: auto;
@@ -64,6 +62,9 @@
     -webkit-transition: all .2s ease-in;
     transition: all .2s ease-in;
 }
+
+
+/* || SUBTITLE STYLES */
 
 .subtitle-div {
     position: relative;
@@ -89,6 +90,8 @@
     font-size: 1.2rem;
 }
 
+
+/* || GENERAL STYLES */
 
 input[type=text] {
     box-sizing: border-box;
@@ -158,4 +161,18 @@ hr.fancy-hr:before {
     border-color: black;
     border-width: 0 0 1px 0;
     border-radius: 20px;
+}
+
+
+/* || MOBILE STYLES */
+/* Write a media query for mobile devices */
+
+@media screen and (max-width: 600px) {
+    .centered-context-text {
+        font-size: 0.8rem;
+    }
+
+    .centered-heading {
+        font-size: 3rem;
+    }
 }
